@@ -52,3 +52,10 @@ class BasePage():
     def go_to_login_page(self):
         print("go_to_login_page")
         self.browser.find_element(*BasePageLocators.SIGNUP_LOGIN_NAVBAR_BUTTON).click()
+
+    def should_be_loged_in(self, name):
+        username = self.browser.find_element(*BasePageLocators.LOGGED_IN_AS).text
+        assert username == name, f"Ошибка! Ожидалось имя {name}, а отображается {username}."
+
+    def delete_account(self):
+        self.browser.find_element(*BasePageLocators.DELETE_ACCOUNT_BUTTON).click()
