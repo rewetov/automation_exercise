@@ -9,7 +9,6 @@ class SignUpPage(BasePage):
         self.should_be_login_url()
 
     def should_be_signup_url(self):
-        print("should_be_login_url")
         print("Текущий URL: ", self.browser.current_url)
         assert "signup" in self.browser.current_url, "Не найдено слово 'signup' в текущем URL открытой страницы"
 

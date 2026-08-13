@@ -1,5 +1,5 @@
-from pages.base_page import BasePage
-from pages.locators import AccountDeletedPageLocators
+from .base_page import BasePage
+from .locators import AccountDeletedPageLocators
 
 
 class AccountDeletedPage(BasePage):

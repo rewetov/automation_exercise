@@ -52,3 +52,26 @@ class AccountCreatedPageLocators():
 class AccountDeletedPageLocators():
     ACCOUNT_DELETED_TEXT = (By.CSS_SELECTOR, ".title.text-center b")
     CONTINUE_BUTTON = (By.CSS_SELECTOR, "[data-qa='continue-button']")
+
+class ContactUsPageLocators():
+    GET_IN_TOUCH_LABEL = (By.CSS_SELECTOR, ".contact-form h2")
+    NAME_INPUT = (By.CSS_SELECTOR, "[name='name']")
+    EMAIL_INPUT = (By.CSS_SELECTOR, "[name='email']")
+    SUBJECT_INPUT = (By.CSS_SELECTOR, "[name='subject']")
+    MESSAGE_INPUT = (By.CSS_SELECTOR, "[name='message']")
+    UPLOAD_FILE = (By.CSS_SELECTOR, "[name='upload_file']")
+    SUBMIT_BUTTON = (By.CSS_SELECTOR, "[name='submit']")
+    SUCCESS_LABEL = (By.CSS_SELECTOR, ".status.alert.alert-success")
+    HOME_BUTTON = (By.CSS_SELECTOR, ".btn-success")
+
+class ProductsPageLocators():
+    PRODUCTS_LIST = (By.CSS_SELECTOR, ".products")
+    FIRST_PRODUCT_VIEW_BUTTON = (By.CSS_SELECTOR, "a[href*='/product_details/1']")
+
+class ProductDetailsPageLocators():
+    PRODUCT_NAME_LABEL = (By.CSS_SELECTOR, ".product-information h2")
+    PRODUCT_CATEGORY_LABEL = (By.CSS_SELECTOR, ".product-information p:nth-child(3)") #не нашел другого селектора, кроме как по порядковому номеру
+    PRODUCT_PRICE_LABEL = (By.CSS_SELECTOR, ".product-information > span > span")
+    PRODUCT_AVAILABILITY_LABEL = (By.CSS_SELECTOR, ".product-information p:nth-child(6) b") #не нашел другого селектора, кроме как по порядковому номеру
+    PRODUCT_CONDITION_LABEL = (By.CSS_SELECTOR, ".product-information p:nth-child(7) b")
+    PRODUCT_BRAND_LABEL = (By.CSS_SELECTOR, ".product-information p:nth-child(8) b")

@@ -20,7 +20,6 @@ class BasePage():
 
     #возвращает True или False в зависимости от того найден элемент или нет
     def is_element_present(self, how, what):
-        print("is_element_present")
         try:
             self.browser.find_element(how, what)
         except (NoSuchElementException):
@@ -50,7 +49,6 @@ class BasePage():
         return True
 
     def go_to_login_page(self):
-        print("go_to_login_page")
         self.browser.find_element(*BasePageLocators.SIGNUP_LOGIN_NAVBAR_BUTTON).click()
 
     def should_be_loged_in(self, name):
@@ -59,3 +57,12 @@ class BasePage():
 
     def delete_account(self):
         self.browser.find_element(*BasePageLocators.DELETE_ACCOUNT_BUTTON).click()
+
+    def go_to_contact_us_page(self):
+        self.browser.find_element(*BasePageLocators.CONTACTUS_NAVBAR_BUTTON).click()
+
+    def go_to_test_cases_page(self):
+        self.browser.find_element(*BasePageLocators.TESTCASES_NAVBAR_BUTTON).click()
+
+    def go_to_products_page(self):
+        self.browser.find_element(*BasePageLocators.PRODUCT_NAVBAR_BUTTON).click()
