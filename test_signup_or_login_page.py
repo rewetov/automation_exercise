@@ -123,5 +123,19 @@ def test_verify_all_products_page(browser):
     product_details_page = ProductDetailsPage(browser, browser.current_url)
     product_details_page.should_be_product_details_page()
 
+#Test Case 9: Search Product
+def test_verify_search_products_page(browser):
+    link = "https://automationexercise.com/"
+    product_name = "Sleeveless Dress"
+
+    main_page = MainPage(browser, link)
+    main_page.open()
+    main_page.should_be_main_page()
+    main_page.go_to_products_page()
+
+    products_page = ProductsPage(browser, browser.current_url)
+    products_page.should_be_products_page()
+    products_page.search_product(product_name)
+    products_page.should_be_the_same_names(product_name)
 
 

@@ -67,6 +67,10 @@ class ContactUsPageLocators():
 class ProductsPageLocators():
     PRODUCTS_LIST = (By.CSS_SELECTOR, ".products")
     FIRST_PRODUCT_VIEW_BUTTON = (By.CSS_SELECTOR, "a[href*='/product_details/1']")
+    #PRODUCT_NAME = (By.CSS_SELECTOR, f".col-sm-4:nth-child({}) .productinfo.text-center p")
+    SEARCH_PRODUCT_INPUT = (By.CSS_SELECTOR, "input#search_product")
+    SEARCH_BUTTON = (By.CSS_SELECTOR, "#submit_search.btn.btn-default.btn-lg")
+
 
 class ProductDetailsPageLocators():
     PRODUCT_NAME_LABEL = (By.CSS_SELECTOR, ".product-information h2")
