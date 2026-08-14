@@ -1,7 +1,7 @@
-from pages.base_page import BasePage
+from .base_page import BasePage
 
 
-class TestCasesPage(BasePage):
+class TCasesPage(BasePage):
     def should_be_test_cases_page(self):
         self.should_be_test_cases_link()
 

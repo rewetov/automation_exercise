@@ -61,7 +61,7 @@ class BasePage():
     def go_to_contact_us_page(self):
         self.browser.find_element(*BasePageLocators.CONTACTUS_NAVBAR_BUTTON).click()
 
-    def go_to_test_cases_page(self):
+    def go_to_t_cases_page(self):
         self.browser.find_element(*BasePageLocators.TESTCASES_NAVBAR_BUTTON).click()
 
     def go_to_products_page(self):

@@ -1,7 +1,7 @@
 from .pages.contact_us_page import ContactUsPage
 from .pages.product_details_page import ProductDetailsPage
 from .pages.products_page import ProductsPage
-from pages.test_cases_page import TestCasesPage
+from .pages.t_cases_page import TCasesPage
 from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
 from .pages.signup_page import SignUpPage
@@ -103,9 +103,9 @@ def test_verify_test_cases_page(browser):
     main_page = MainPage(browser, link)
     main_page.open()
     main_page.should_be_main_page()
-    main_page.go_to_test_cases_page()
+    main_page.go_to_t_cases_page()
 
-    test_cases_page = TestCasesPage(browser, browser.current_url)
+    test_cases_page = TCasesPage(browser, browser.current_url)
     test_cases_page.should_be_test_cases_page()
 
 # Test Case 8: Verify All Products and product detail page
