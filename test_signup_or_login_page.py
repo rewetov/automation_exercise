@@ -1,3 +1,4 @@
+from .pages.cart_page import CartPage
 from .pages.contact_us_page import ContactUsPage
 from .pages.product_details_page import ProductDetailsPage
 from .pages.products_page import ProductsPage
@@ -150,4 +151,21 @@ def test_verify_subscription_in_home_page(browser):
     main_page.should_be_subscription_label()
     main_page.subscribe(email)
     main_page.should_be_subscribed()
+
+#Test Case 11: Verify Subscription in Cart page
+def test_verify_subscription_in_cart_page(browser):
+    link = "https://automationexercise.com/"
+    email = "test@gmail.com"
+
+    main_page = MainPage(browser, link)
+    main_page.open()
+    main_page.should_be_main_page()
+    main_page.go_to_cart_page()
+
+    cart_page = CartPage(browser, browser.current_url)
+    cart_page.should_be_cart_page()
+    cart_page.scroll_to_footer()
+    cart_page.should_be_subscription_label()
+    cart_page.subscribe(email)
+    cart_page.should_be_subscribed()
 

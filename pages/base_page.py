@@ -75,6 +75,9 @@ class BasePage():
     def go_to_products_page(self):
         self.browser.find_element(*BasePageLocators.PRODUCT_NAVBAR_BUTTON).click()
 
+    def go_to_cart_page(self):
+        self.browser.find_element(*BasePageLocators.CART_NAVBAR_BUTTON).click()
+
     def should_be_subscription_label(self):
         assert self.is_element_present(*BasePageLocators.SUBSCRIPTION_LABEL), "ОШИБКА, элемент 'SUBSCRIPTION_LABEL' не найден."
 
