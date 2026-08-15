@@ -20,6 +20,11 @@ class BasePageLocators():
     CONTACTUS_NAVBAR_BUTTON = (By.CSS_SELECTOR, ".nav.navbar-nav a[href*='/contact_us']")
     LOGGED_IN_AS = (By.CSS_SELECTOR, ".fa.fa-user + b")
     DELETE_ACCOUNT_BUTTON = (By.CSS_SELECTOR, ".nav.navbar-nav a[href*='/delete_account']")
+    SUBSCRIPTION_LABEL = (By.CSS_SELECTOR, "#footer h2")
+    SUBSCRIPTION_EMAIL_INPUT = (By.CSS_SELECTOR, ".searchform #susbscribe_email")
+    SUBSCRIBE_BUTTON = (By.CSS_SELECTOR, ".searchform button")
+    SUBSCRIBED_SUCCESSFULLY_MESSAGE_VISIBLE = (By.CSS_SELECTOR, "#success-subscribe")
+    SUBSCRIBED_SUCCESSFULLY_MESSAGE_INVISIBLE = (By.CSS_SELECTOR, ".col-md-9.form-group.hide")
 
 class SignUpPageLocators():
     ENTER_ACCOUNT_INFORMATION_TEXT = (By.CSS_SELECTOR, ".login-form h2:nth-child(1) b")

@@ -27,6 +27,8 @@ class ProductsPage(BasePage):
         element_text = self.browser.find_element(By.CSS_SELECTOR, f".col-sm-4:nth-child({index}) .productinfo.text-center p").text
         assert name in element_text, f"Имя продукта '{name}' не найдено в элементе с индексом {index}."
 
+    #Поиск нужно как то отдельно тестить подробно. Здесь просто пробный тест. Выдача слишком отличается.
+    #На поисковый запрос T-shirt выдаст и tshirt и Tshirt и TSHIRT и t-shirt, не понятно как это проверять асертами.
     def should_be_the_same_names(self, name):
         response = requests.get(self.browser.current_url)
         soup = BeautifulSoup(response.text, "html.parser")

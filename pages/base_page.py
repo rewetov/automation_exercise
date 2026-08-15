@@ -1,3 +1,4 @@
+import time
 
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
@@ -23,6 +24,13 @@ class BasePage():
         try:
             self.browser.find_element(how, what)
         except (NoSuchElementException):
+            return False
+        return True
+
+    def is_element_visible(self, how, what, timeout=5):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.visibility_of_element_located((how, what)))
+        except TimeoutException:
             return False
         return True
 
@@ -66,3 +74,19 @@ class BasePage():
 
     def go_to_products_page(self):
         self.browser.find_element(*BasePageLocators.PRODUCT_NAVBAR_BUTTON).click()
+
+    def should_be_subscription_label(self):
+        assert self.is_element_present(*BasePageLocators.SUBSCRIPTION_LABEL), "ОШИБКА, элемент 'SUBSCRIPTION_LABEL' не найден."
+
+    def subscribe(self, email):
+        self.browser.find_element(*BasePageLocators.SUBSCRIPTION_EMAIL_INPUT).click()
+        self.browser.find_element(*BasePageLocators.SUBSCRIPTION_EMAIL_INPUT).send_keys(email)
+        self.browser.find_element(*BasePageLocators.SUBSCRIBE_BUTTON).click()
+
+    def should_be_subscribed(self):
+        assert self.is_element_visible(*BasePageLocators.SUBSCRIBED_SUCCESSFULLY_MESSAGE_VISIBLE), "ОШИБКА, элемент 'SUBSCRIBED_SUCCESSFULLY_MESSAGE_VISIBLE' не найден."
+
+    def scroll_to_footer(self):
+        time.sleep(3) #Таймер нужен чтобы все карточки продуктов подгрузились. Не знаю как это сделать по-человечески (
+        self.browser.execute_script("return arguments[0].scrollIntoView(true);", self.browser.find_element(*BasePageLocators.SUBSCRIPTION_EMAIL_INPUT))  # скролим к элементу
+

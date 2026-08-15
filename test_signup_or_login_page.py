@@ -138,4 +138,16 @@ def test_verify_search_products_page(browser):
     products_page.search_product(product_name)
     products_page.should_be_the_same_names(product_name)
 
+#Test Case 10: Verify Subscription in home page
+def test_verify_subscription_in_home_page(browser):
+    link = "https://automationexercise.com/"
+    email = "test@gmail.com"
+
+    main_page = MainPage(browser, link)
+    main_page.open()
+    main_page.should_be_main_page()
+    main_page.scroll_to_footer()
+    main_page.should_be_subscription_label()
+    main_page.subscribe(email)
+    main_page.should_be_subscribed()
 

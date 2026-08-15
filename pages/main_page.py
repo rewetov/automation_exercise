@@ -13,9 +13,11 @@ class MainPage(BasePage):
         self.should_be_carousel_on_main_page()
 
 
+
     def should_be_main_page_link(self):
         assert self.browser.current_url == "https://automationexercise.com/", "Ссылка в браузере не соответствует ссылке для главной страницы"
 
     def should_be_carousel_on_main_page(self):
         assert self.is_element_present(*MainPageLocators.CAROUSEL), "ОШИБКА, элемент 'CAROUSEL' не найден. Не могу подтвердить, что открыта главная страница"
+
 
