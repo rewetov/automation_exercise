@@ -1,3 +1,5 @@
+import pytest
+
 from .pages.cart_page import CartPage
 from .pages.contact_us_page import ContactUsPage
 from .pages.product_details_page import ProductDetailsPage
@@ -10,9 +12,16 @@ from .pages.account_created_page import AccountCreatedPage
 from .pages.account_deleted_page import AccountDeletedPage
 import time
 
+@pytest.fixture(autouse=True, scope="function")
+def setup(browser):
+    link = "https://automationexercise.com/"
+    main_page = MainPage(browser, link)
+    main_page.open()
+    main_page.should_be_main_page()
+
+
 #Test Case 1: Register User
 def test_register_user(browser):
-    link = "https://automationexercise.com/"
     firstname = "Alex" + str(time.time())
     lastname = "Guest"
     email = str(time.time()) + "@fakemail.org"
@@ -28,13 +37,10 @@ def test_register_user(browser):
     zipcode = "123456"
     mobile_number = "+9 999 999 99 99"
 
-
-    main_page = MainPage(browser, link)
-    main_page.open()
-    main_page.should_be_main_page()
+    main_page = MainPage(browser, browser.current_url)
     main_page.go_to_login_page()
 
-    login_page = LoginPage(browser, link)
+    login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_page()
     time.sleep(2)
 
@@ -77,10 +83,7 @@ def test_register_user(browser):
 
 #Test Case 6: Contact Us Form
 def test_contact_us_form(browser):
-    link = "https://automationexercise.com/"
-    main_page = MainPage(browser, link)
-    main_page.open()
-    main_page.should_be_main_page()
+    main_page = MainPage(browser, browser.current_url)
     main_page.go_to_contact_us_page()
 
     contact_us_page = ContactUsPage(browser, browser.current_url)
@@ -100,10 +103,7 @@ def test_contact_us_form(browser):
 
 # Test Case 7: Verify Test Cases Page
 def test_verify_test_cases_page(browser):
-    link = "https://automationexercise.com/"
-    main_page = MainPage(browser, link)
-    main_page.open()
-    main_page.should_be_main_page()
+    main_page = MainPage(browser, browser.current_url)
     main_page.go_to_t_cases_page()
 
     test_cases_page = TCasesPage(browser, browser.current_url)
@@ -111,10 +111,7 @@ def test_verify_test_cases_page(browser):
 
 # Test Case 8: Verify All Products and product detail page
 def test_verify_all_products_page(browser):
-    link = "https://automationexercise.com/"
-    main_page = MainPage(browser, link)
-    main_page.open()
-    main_page.should_be_main_page()
+    main_page = MainPage(browser, browser.current_url)
     main_page.go_to_products_page()
 
     products_page = ProductsPage(browser, browser.current_url)
@@ -126,12 +123,9 @@ def test_verify_all_products_page(browser):
 
 #Test Case 9: Search Product
 def test_verify_search_products_page(browser):
-    link = "https://automationexercise.com/"
     product_name = "Sleeveless Dress"
 
-    main_page = MainPage(browser, link)
-    main_page.open()
-    main_page.should_be_main_page()
+    main_page = MainPage(browser, browser.current_url)
     main_page.go_to_products_page()
 
     products_page = ProductsPage(browser, browser.current_url)
@@ -141,12 +135,9 @@ def test_verify_search_products_page(browser):
 
 #Test Case 10: Verify Subscription in home page
 def test_verify_subscription_in_home_page(browser):
-    link = "https://automationexercise.com/"
     email = "test@gmail.com"
 
-    main_page = MainPage(browser, link)
-    main_page.open()
-    main_page.should_be_main_page()
+    main_page = MainPage(browser, browser.current_url)
     main_page.scroll_to_footer()
     main_page.should_be_subscription_label()
     main_page.subscribe(email)
@@ -154,12 +145,9 @@ def test_verify_subscription_in_home_page(browser):
 
 #Test Case 11: Verify Subscription in Cart page
 def test_verify_subscription_in_cart_page(browser):
-    link = "https://automationexercise.com/"
     email = "test@gmail.com"
 
-    main_page = MainPage(browser, link)
-    main_page.open()
-    main_page.should_be_main_page()
+    main_page = MainPage(browser, browser.current_url)
     main_page.go_to_cart_page()
 
     cart_page = CartPage(browser, browser.current_url)
