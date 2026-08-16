@@ -59,12 +59,12 @@ class BasePage():
     def go_to_login_page(self):
         self.browser.find_element(*BasePageLocators.SIGNUP_LOGIN_NAVBAR_BUTTON).click()
 
-    def should_be_loged_in(self, name):
+    def should_be_logged_in(self, name):
         username = self.browser.find_element(*BasePageLocators.LOGGED_IN_AS).text
         assert username == name, f"Ошибка! Ожидалось имя {name}, а отображается {username}."
 
     def delete_account(self):
-        self.browser.find_element(*BasePageLocators.DELETE_ACCOUNT_BUTTON).click()
+        self.browser.find_element(*BasePageLocators.DELETE_ACCOUNT_NAVBAR_BUTTON).click()
 
     def go_to_contact_us_page(self):
         self.browser.find_element(*BasePageLocators.CONTACTUS_NAVBAR_BUTTON).click()
@@ -92,4 +92,10 @@ class BasePage():
     def scroll_to_footer(self):
         time.sleep(3) #Таймер нужен чтобы все карточки продуктов подгрузились. Не знаю как это сделать по-человечески (
         self.browser.execute_script("return arguments[0].scrollIntoView(true);", self.browser.find_element(*BasePageLocators.SUBSCRIPTION_EMAIL_INPUT))  # скролим к элементу
+
+    def log_out_user(self):
+        self.browser.find_element(*BasePageLocators.LOGOUT_NAVBAR_BUTTON).click()
+
+    def go_to_main_page(self):
+        self.browser.find_element(*BasePageLocators.HOME_NAVBAR_BUTTON).click()
 

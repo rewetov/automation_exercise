@@ -19,11 +19,20 @@ class LoginPage(BasePage):
     def should_be_registration_block_on_page(self):
         assert self.is_element_present(*LoginPageLocators.SIGNUP_FORM), "Логин форма не найдена. Не найден локатор SIGNUP_FORM"
 
-    def input_username(self, name):
-        self.browser.find_element(*LoginPageLocators.INPUT_NAME).send_keys(name)
+    def input_username_signup(self, name):
+        self.browser.find_element(*LoginPageLocators.NAME_SIGNUP_INPUT).send_keys(name)
 
-    def input_email(self, email):
-        self.browser.find_element(*LoginPageLocators.INPUT_EMAIL).send_keys(email)
+    def input_email_signup(self, email):
+        self.browser.find_element(*LoginPageLocators.EMAIL_SIGNUP_INPUT).send_keys(email)
 
     def click_signup_button(self):
-        self.browser.find_element(*LoginPageLocators.BUTTON_SIGNUP).click()
+        self.browser.find_element(*LoginPageLocators.SIGNUP_BUTTON).click()
+
+    def input_email_login(self, email):
+        self.browser.find_element(*LoginPageLocators.EMAIL_LOGIN_INPUT).send_keys(email)
+
+    def input_password_login(self, password):
+        self.browser.find_element(*LoginPageLocators.PASSWORD_LOGIN_INPUT).send_keys(password)
+
+    def click_login_button(self):
+        self.browser.find_element(*LoginPageLocators.LOGIN_BUTTON).click()

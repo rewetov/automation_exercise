@@ -1,11 +1,14 @@
 from selenium.webdriver.common.by import By
 
 class LoginPageLocators():
-    INPUT_NAME = (By.CSS_SELECTOR, "[data-qa='signup-name']")
-    INPUT_EMAIL = (By.CSS_SELECTOR, "[data-qa='signup-email']")
-    BUTTON_SIGNUP = (By.CSS_SELECTOR, "[data-qa='signup-button']")
     SIGNUP_FORM = (By.CSS_SELECTOR, ".signup-form")
+    NAME_SIGNUP_INPUT = (By.CSS_SELECTOR, "[data-qa='signup-name']")
+    EMAIL_SIGNUP_INPUT = (By.CSS_SELECTOR, "[data-qa='signup-email']")
+    SIGNUP_BUTTON = (By.CSS_SELECTOR, "[data-qa='signup-button']")
     LOGIN_FORM = (By.CSS_SELECTOR, ".login-form")
+    EMAIL_LOGIN_INPUT = (By.CSS_SELECTOR, "[data-qa='login-email']")
+    PASSWORD_LOGIN_INPUT = (By.CSS_SELECTOR, "[data-qa='login-password']")
+    LOGIN_BUTTON = (By.CSS_SELECTOR, "[data-qa='login-button']")
 
 class MainPageLocators():
     CAROUSEL = (By.CSS_SELECTOR, "#slider-carousel.carousel.slide")
@@ -15,11 +18,12 @@ class BasePageLocators():
     PRODUCT_NAVBAR_BUTTON = (By.CSS_SELECTOR, ".nav.navbar-nav a[href*='/product']")
     CART_NAVBAR_BUTTON = (By.CSS_SELECTOR, ".nav.navbar-nav a[href*='/view_cart']")
     SIGNUP_LOGIN_NAVBAR_BUTTON = (By.CSS_SELECTOR, ".nav.navbar-nav a[href*='/login']")
+    LOGOUT_NAVBAR_BUTTON = (By.CSS_SELECTOR, ".nav.navbar-nav a[href*='/logout']")
     TESTCASES_NAVBAR_BUTTON = (By.CSS_SELECTOR, ".nav.navbar-nav a[href*='/test_cases']")
     APITESTING_NAVBAR_BUTTON = (By.CSS_SELECTOR, ".nav.navbar-nav a[href*='/api_list']")
     CONTACTUS_NAVBAR_BUTTON = (By.CSS_SELECTOR, ".nav.navbar-nav a[href*='/contact_us']")
     LOGGED_IN_AS = (By.CSS_SELECTOR, ".fa.fa-user + b")
-    DELETE_ACCOUNT_BUTTON = (By.CSS_SELECTOR, ".nav.navbar-nav a[href*='/delete_account']")
+    DELETE_ACCOUNT_NAVBAR_BUTTON = (By.CSS_SELECTOR, ".nav.navbar-nav a[href*='/delete_account']")
     SUBSCRIPTION_LABEL = (By.CSS_SELECTOR, "#footer h2")
     SUBSCRIPTION_EMAIL_INPUT = (By.CSS_SELECTOR, ".searchform #susbscribe_email")
     SUBSCRIBE_BUTTON = (By.CSS_SELECTOR, ".searchform button")
