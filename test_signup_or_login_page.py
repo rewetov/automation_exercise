@@ -108,6 +108,11 @@ def test_login_user_with_correct_email_and_password(browser):
     main_page.should_be_logged_in(user.firstname)
     time.sleep(5)
 
+    #удаляем аккаунт
+    main_page.delete_account()
+    account_deleted_page = AccountDeletedPage(browser, browser.current_url)
+    account_deleted_page.should_be_account_deleted()
+
 #Test Case 3: Login User with incorrect email and password
 def test_login_user_with_not_correct_email_and_password(browser):
     main_page = MainPage(browser, browser.current_url)
@@ -121,6 +126,51 @@ def test_login_user_with_not_correct_email_and_password(browser):
     login_page.click_login_button()
     login_page.should_be_incorrect_email_or_password_message()
 
+#Test Case 4: Logout User
+def test_logout_user(browser):
+    #регистрируем тестового пользователя
+    user = CorrectEmailUser()
+    register_user(browser, user)
+
+    #разлогиниваемся
+    main_page = MainPage(browser, browser.current_url)
+    main_page.should_be_main_page()
+    main_page.log_out_user()
+
+    #возвращаемся на главную страницу после разлогина
+    login_page = LoginPage(browser, browser.current_url)
+    login_page.should_be_login_page()
+    login_page.go_to_main_page()
+    main_page = MainPage(browser, browser.current_url)
+    main_page.should_be_main_page()
+    main_page.go_to_login_page()
+
+    #логинимся под зарегистрированным ранее пользователем
+    login_page = LoginPage(browser, browser.current_url)
+    login_page.should_be_login_page()
+    login_page.input_email_login(user.email)
+    login_page.input_password_login(user.password)
+    login_page.click_login_button()
+
+    # проверяем что залогинены под тестовым пользователем
+    main_page = MainPage(browser, browser.current_url)
+    main_page.should_be_main_page()
+    main_page.should_be_logged_in(user.firstname)
+
+    #разлогиниваемся и проверяем что оказались на странице логина
+    main_page.log_out_user()
+    login_page = LoginPage(browser, browser.current_url)
+    login_page.should_be_login_page()
+    time.sleep(5)
+
+    #удаляем аккаунт после теста
+    login_page.input_email_login(user.email)
+    login_page.input_password_login(user.password)
+    login_page.click_login_button()
+    main_page = MainPage(browser, browser.current_url)
+    main_page.delete_account()
+    account_deleted_page = AccountDeletedPage(browser, browser.current_url)
+    account_deleted_page.should_be_account_deleted()
 
 #Test Case 6: Contact Us Form
 def test_contact_us_form(browser):
