@@ -16,3 +16,6 @@ class CorrectEmailUser():
     city = "Samara"
     zipcode = "123456"
     mobile_number = "+9 999 999 99 99"
+
+class NotCorrectEmailUser():
+    firstname = "Alex" + str(time.time())

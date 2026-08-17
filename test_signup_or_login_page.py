@@ -108,6 +108,19 @@ def test_login_user_with_correct_email_and_password(browser):
     main_page.should_be_logged_in(user.firstname)
     time.sleep(5)
 
+#Test Case 3: Login User with incorrect email and password
+def test_login_user_with_not_correct_email_and_password(browser):
+    main_page = MainPage(browser, browser.current_url)
+    main_page.should_be_main_page()
+    main_page.go_to_login_page()
+
+    login_page = LoginPage(browser, browser.current_url)
+    login_page.should_be_login_page()
+    login_page.input_email_login("some_wrong_email@gmail.com")
+    login_page.input_password_login("some_wrong_password")
+    login_page.click_login_button()
+    login_page.should_be_incorrect_email_or_password_message()
+
 
 #Test Case 6: Contact Us Form
 def test_contact_us_form(browser):

@@ -36,3 +36,7 @@ class LoginPage(BasePage):
 
     def click_login_button(self):
         self.browser.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
+
+    def should_be_incorrect_email_or_password_message(self):
+        error_message = self.browser.find_element(*LoginPageLocators.INCORRECT_EMAIL_OR_PASSWORD_LABEL).text
+        assert error_message == "Your email or password is incorrect!", f"Ошибка! Ожидается текст 'Your email or password is incorrect!', а выводится {error_message}."
