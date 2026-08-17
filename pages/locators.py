@@ -10,6 +10,7 @@ class LoginPageLocators():
     PASSWORD_LOGIN_INPUT = (By.CSS_SELECTOR, "[data-qa='login-password']")
     LOGIN_BUTTON = (By.CSS_SELECTOR, "[data-qa='login-button']")
     INCORRECT_EMAIL_OR_PASSWORD_LABEL = (By.CSS_SELECTOR, ".login-form p")
+    EMAIL_ADDRESS_ALREADY_EXIST_LABEL = (By.CSS_SELECTOR, ".signup-form p")
 
 class MainPageLocators():
     CAROUSEL = (By.CSS_SELECTOR, "#slider-carousel.carousel.slide")

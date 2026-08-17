@@ -142,7 +142,8 @@ def test_logout_user(browser):
     register_user(browser, user)
     logout_user(browser)
 
-    # логинимся под зарегистрированным ранее пользователем
+    #логинимся под зарегистрированным ранее пользователем
+    print("логинимся под зарегистрированным ранее пользователем")
     main_page = MainPage(browser, browser.current_url)
     main_page.should_be_main_page()
     main_page.go_to_login_page()
@@ -152,19 +153,45 @@ def test_logout_user(browser):
     login_page.input_password_login(user.password)
     login_page.click_login_button()
 
-    # проверяем что залогинены под тестовым пользователем
+    #проверяем что залогинены под тестовым пользователем
+    print("проверяем что залогинены под тестовым пользователем")
     main_page = MainPage(browser, browser.current_url)
     main_page.should_be_main_page()
     main_page.should_be_logged_in(user.firstname)
 
     #разлогиниваемся и проверяем что оказались на странице логина
+    print("разлогиниваемся и проверяем что оказались на странице логина")
     main_page.log_out_user()
     login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_page()
     time.sleep(5)
 
     #Удаляем пользователя после тестирования
+    print("Удаляем пользователя после тестирования")
     delete_user(browser, user)
+
+#Test Case 5: Register User with existing email
+def test_register_user_with_existing_email(browser):
+    #регистрируем тестового пользователя
+    user = CorrectEmailUser()
+    register_user(browser, user)
+    logout_user(browser)
+
+    # регистрируемся под зарегистрированным ранее пользователем и проверяем сообщение об ошибке
+    main_page = MainPage(browser, browser.current_url)
+    main_page.should_be_main_page()
+    main_page.go_to_login_page()
+    login_page = LoginPage(browser, browser.current_url)
+    login_page.should_be_login_page()
+    login_page.input_email_signup(user.email)
+    login_page.input_username_signup(user.firstname)
+    login_page.click_signup_button()
+    login_page.should_be_email_address_already_exist_message()
+    time.sleep(3)
+
+    # Удаляем пользователя после тестирования
+    delete_user(browser, user)
+
 
 #Test Case 6: Contact Us Form
 def test_contact_us_form(browser):

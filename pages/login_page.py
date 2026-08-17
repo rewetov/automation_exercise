@@ -40,3 +40,7 @@ class LoginPage(BasePage):
     def should_be_incorrect_email_or_password_message(self):
         error_message = self.browser.find_element(*LoginPageLocators.INCORRECT_EMAIL_OR_PASSWORD_LABEL).text
         assert error_message == "Your email or password is incorrect!", f"Ошибка! Ожидается текст 'Your email or password is incorrect!', а выводится {error_message}."
+
+    def should_be_email_address_already_exist_message(self):
+        error_message = self.browser.find_element(*LoginPageLocators.EMAIL_ADDRESS_ALREADY_EXIST_LABEL).text
+        assert error_message == "Email Address already exist!", f"Ошибка! Email Address already exist!', а выводится {error_message}."
