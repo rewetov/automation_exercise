@@ -269,3 +269,31 @@ def test_verify_subscription_in_cart_page(browser):
     cart_page.subscribe(email)
     cart_page.should_be_subscribed()
 
+#Test Case 12: Add Products in Cart
+def test_add_products_in_cart(browser):
+    main_page = MainPage(browser, browser.current_url)
+    main_page.go_to_products_page()
+    products_page = ProductsPage(browser, browser.current_url)
+    products_page.should_be_products_page()
+
+    #наводим курсор на продукт 1 и добавляем в корзину (третий по индексу на странице)
+    products_page.move_cursor_to_add_to_cart_button(3)
+    products_page.click_add_to_cart_overlay_button(3)
+
+    # создаем объект в котором хранится цена, имя, количество, индекс продукта
+    product1 = products_page.create_product_instance(3, 1)
+    products_page.click_continue_shopping_on_success_popup()
+
+    # наводим курсор на продукт 2 и добавляем в корзину (четвертый по индексу на странице)
+    products_page.move_cursor_to_add_to_cart_button(4)
+    products_page.click_add_to_cart_overlay_button(4)
+
+    # создаем объект в котором хранится цена, имя, количество, индекс продукта
+    product2 = products_page.create_product_instance(4, 1)
+    products_page.view_cart_on_success_popup()
+
+    #переходим в корзину и сравниваем параметры
+    cart_page = CartPage(browser, browser.current_url)
+    cart_page.should_be_cart_page()
+    cart_page.should_be_right_parameters(product1, 1)
+    cart_page.should_be_right_parameters(product2, 2)

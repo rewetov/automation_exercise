@@ -1,9 +1,11 @@
 import requests
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 
 from .base_page import BasePage
 from .locators import ProductsPageLocators
+from .product import Product
 
 
 class ProductsPage(BasePage):
@@ -38,3 +40,27 @@ class ProductsPage(BasePage):
         for i in range(3, elements_count+3):
             print(f"Ищу подстроку '{name}' в элементе номер {i}")
             self.should_be_the_same_name_by_index(i, name)
+
+    def move_cursor_to_add_to_cart_button(self, product_index):
+        element = self.browser.find_element(By.CSS_SELECTOR, f".col-sm-4:nth-child({product_index}) .productinfo.text-center a")
+        actions = ActionChains(self.browser)
+        actions.move_to_element(element).perform()
+
+    def click_add_to_cart_overlay_button(self, product_index):
+        self.is_element_present(By.CSS_SELECTOR, f".col-sm-4:nth-child({product_index}) .overlay-content .add-to-cart")
+        self.browser.find_element(By.CSS_SELECTOR, f".col-sm-4:nth-child({product_index}) .overlay-content .add-to-cart").click()
+
+
+    def click_continue_shopping_on_success_popup(self):
+        self.browser.find_element(*ProductsPageLocators.CONTINUE_SHOPPING_ON_SUCCESS_POPUP_BUTTON).click()
+
+    def view_cart_on_success_popup(self):
+        self.browser.find_element(*ProductsPageLocators.VIEW_CART_ON_SUCCESS_POPUP_BUTTON).click()
+
+    def create_product_instance(self, product_index, quantity):
+        product_name = self.browser.find_element(By.CSS_SELECTOR, f".col-sm-4:nth-child({product_index}) .productinfo.text-center p").text
+        product_price_text = self.browser.find_element(By.CSS_SELECTOR, f".col-sm-4:nth-child({product_index}) .productinfo.text-center h2" ).text
+        product_price = self.extract_int(product_price_text)
+        product = Product(product_name, product_price, product_index, quantity)
+        return product
+

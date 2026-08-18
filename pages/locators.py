@@ -81,6 +81,8 @@ class ProductsPageLocators():
     #PRODUCT_NAME = (By.CSS_SELECTOR, f".col-sm-4:nth-child({}) .productinfo.text-center p")
     SEARCH_PRODUCT_INPUT = (By.CSS_SELECTOR, "input#search_product")
     SEARCH_BUTTON = (By.CSS_SELECTOR, "#submit_search.btn.btn-default.btn-lg")
+    CONTINUE_SHOPPING_ON_SUCCESS_POPUP_BUTTON = (By.CSS_SELECTOR, ".modal-dialog.modal-confirm .btn.btn-success.close-modal.btn-block")
+    VIEW_CART_ON_SUCCESS_POPUP_BUTTON = (By.CSS_SELECTOR, ".modal-dialog.modal-confirm a[href*='/view_cart']")
 
 
 class ProductDetailsPageLocators():

@@ -1,3 +1,4 @@
+import re
 import time
 
 from selenium.common.exceptions import NoSuchElementException
@@ -55,6 +56,12 @@ class BasePage():
         except TimeoutException:
             return False
         return True
+
+    #возвращает стоимость товара в виде числа без обозначения валюты
+    def extract_int(self, text):
+        # Находит первую последовательность цифр
+        match = re.search(r"\d+", text)
+        return int(match.group()) if match else None
 
     def go_to_login_page(self):
         self.browser.find_element(*BasePageLocators.SIGNUP_LOGIN_NAVBAR_BUTTON).click()
